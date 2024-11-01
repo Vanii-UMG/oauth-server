@@ -237,9 +237,13 @@ La aplicación se ejecuta por medio de microservicios distribuídos en distintas
 ## Microservicio Login/ Registro/ Rol
 > Link de github con el resto del código: https://github.com/Vanii-UMG/oauth-server/tree/master
 ### Endpoints utilizados
-- **/login POST** Se logea en el servicio y devuelve el token
-- **/signin POST** se registra en el servicio y se guarda en dB
+- **/login** POST Se logea en el servicio y devuelve el token
+- **/signin** POST se registra en el servicio y se guarda en dB
+- **/nuevo** Permite ingresar un nuevo usuario
 - **/reset-password** PUT reinicia la contraseña del usuario
+- **/rol/{idUsuario}** Obtener los roles de los usuarios por su id
+- **/{id}** PUT actualizar usuario por su id
+- **/{id}** DELETE eliminar un usuario por su id
 ### Funciones utilizadas para el Login
 Para la función de Login se utilizó el sistema de Keycloak. La clase a continuación es la clase KeycloackService.kt la cuál cuenta con varias funciones para obtener la información de empleados, registro de usuarios, asignación de roles y restablecimiento de contraseñas.
  **Propiedades de la clase principal**
