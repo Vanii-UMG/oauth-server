@@ -1,5 +1,6 @@
 package proyecto_final.dw.servicios;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,10 @@ import proyecto_final.dw.repositorios.RolRepository;
 import proyecto_final.dw.repositorios.UsuarioRepository;
 
 import java.util.*;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
-
-    private final Logger log = Logger.getLogger(UsuarioService.class.getName());
 
     @Autowired
     UsuarioRepository usuarioRepository;
@@ -152,6 +150,12 @@ public class UsuarioService {
             throw new RuntimeException("Usuario no encontrado");
         }
         usuarioRepository.deleteById(idUsuario);
+    }
+
+    public Set<Rol> obtenerRolesPorIdUser(Long idUsuario) {
+        return usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado con ID: " + idUsuario))
+                .getRoles();
     }
 
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import proyecto_final.dw.dtos.request.UsuarioRequest;
 import proyecto_final.dw.dtos.response.UsuarioResponse;
+import proyecto_final.dw.modelos.Rol;
 import proyecto_final.dw.modelos.Usuario;
 import proyecto_final.dw.servicios.UsuarioService;
 
@@ -55,6 +56,11 @@ public class UsuarioController {
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/rol/{idUsuario}")
+    public Set<Rol> obtenerRol(@PathVariable Long idUsuario) {
+        return usuarioService.obtenerRolesPorIdUser(idUsuario);
     }
 
 
